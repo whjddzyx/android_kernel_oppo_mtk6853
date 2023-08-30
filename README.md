@@ -6,4 +6,7 @@ OPPO A72 5G
 
 适用系统:安卓12  coloros12.1
 
-内核来源:
+内核来源oppo官方:
+
+vendor来源oppo官方:
+https://github.com/oppo-source/android_kernel_modules_oppo_mtk5g
