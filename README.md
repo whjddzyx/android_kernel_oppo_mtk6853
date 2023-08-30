@@ -4,6 +4,8 @@ OPPO A53 5G
 
 OPPO K7x 5G
 
+OPPO Reno4 5G
+
 处理器:天玑720 代号mtk6853
 
 内核内核版本:4.14.186
