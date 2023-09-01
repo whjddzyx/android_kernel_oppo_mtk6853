@@ -17,10 +17,8 @@ jobs:
 
     - name: 环境变量配置
       run: |
-        cat config.env | grep KERNEL_SOURCE= >> $GITHUB_ENV
-        cat config.env | grep KERNEL_SOURCE_BRANCH= >> $GITHUB_ENV
-        cat config.env | grep KERNEL_CONFIG= >> $GITHUB_ENV
-        cat config.env | grep KERNEL_ZIP_NAME= >> $GITHUB_ENV
+            echo "KERNEL_CONFIG=$(cat config.env | grep -w "KERNEL_CONFIG" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
+            echo "KERNEL_ZIP_NAME=$(cat config.env | grep -w "KERNEL_ZIP_NAME" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
 
     - name: 构建编译内核环境
       run: |
