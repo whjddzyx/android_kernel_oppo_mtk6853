@@ -14,6 +14,8 @@ Realme Q2 5G
 
 适用系统:安卓12  coloros12.1
 
+
+部分传感器可能会失效
 内核来源oppo官方:
 https://github.com/oppo-source/android_kernel_4.14_oppo_mtk5g
 
