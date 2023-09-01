@@ -108,7 +108,7 @@ jobs:
         fi
     
     
-    - name: Anykernel3
+    - name: 上传 Anykernel3
       uses: actions/upload-artifact@v3
       with:
         name: ${{ env.KERNEL_ZIP_NAME }}
@@ -121,7 +121,7 @@ jobs:
         name: boot${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
         path: kernel_workspace/boot.img
         
-    - name: Upload DTBO image
+    - name: 上传 Image.gz-dtb
       if: env.CHECK_DTBO_IS_OK == 'true'
       uses: actions/upload-artifact@v3
       with:
