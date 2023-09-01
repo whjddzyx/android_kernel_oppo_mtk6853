@@ -49,7 +49,7 @@ jobs:
     - name: 下载内核源码
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
-        git clone ${{ env.KERNEL_SOURCE }} -b ${{ env.KERNEL_SOURCE_BRANCH }} android-kernel --depth=1
+        git clone https://github.com/wu17481748/android_kernel_4.14.186_oppo_mtk6853 -b main android-kernel --depth=1
         cd android-kernel
         mv vendor ../
         cp -a 4.14.186/* ../
