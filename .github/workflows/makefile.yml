@@ -57,6 +57,7 @@ jobs:
       if: env.ENABLE_KERNELSU == 'true'
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
+        rm -rf KernelSU
         curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s ${{ env.KERNELSU_TAG }}
         
                
@@ -115,8 +116,8 @@ jobs:
         name: boot${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
         path: kernel_workspace/boot.img
         
-    - name: 上传 Image.gz-dtb
+    - name: 上传编译产物
       uses: actions/upload-artifact@v3
       with:
-        name: Image.gz-dtb
-        path: kernel_workspace/android-kernel/out/arch/arm64/boot/Image.gz-dtb      
+        name: boot
+        path: kernel_workspace/android-kernel/out/arch/arm64/boot/*      
