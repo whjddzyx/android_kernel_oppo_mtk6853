@@ -52,7 +52,7 @@ jobs:
         git clone https://github.com/wu17481748/android_kernel_4.14.186_oppo_mtk6853 -b main android-kernel --depth=1
         cd android-kernel
         mv vendor ../
-        cp -a 4.14.186/* ../
+        cp -a 4.14.186/* ./
 
 
 
