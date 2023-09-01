@@ -54,7 +54,6 @@ jobs:
 
 
     - name: 更新 ksu
-      if: env.ENABLE_KERNELSU == 'true'
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
         rm -rf KernelSU
