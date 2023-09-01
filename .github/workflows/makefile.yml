@@ -77,7 +77,6 @@ jobs:
                 
 
     - name: 制作Anykernel3卡刷包
-      if: env.CHECK_FILE_IS_OK == 'true'
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
         git clone https://github.com/osm0sis/AnyKernel3
