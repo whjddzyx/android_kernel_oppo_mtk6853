@@ -105,7 +105,7 @@ jobs:
     - name: 上传 Anykernel3
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.KERNEL_ZIP_NAME }}
+        name: ${{ env.KERNEL_CONFIG }}
         path: kernel_workspace/AnyKernel3/*
         
     - name: 上传 boot.img
@@ -118,5 +118,5 @@ jobs:
     - name: 上传 Image.gz-dtb
       uses: actions/upload-artifact@v3
       with:
-        name: Image-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
+        name: Image.gz-dtb
         path: kernel_workspace/android-kernel/out/arch/arm64/boot/Image.gz-dtb      
