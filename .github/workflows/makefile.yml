@@ -116,7 +116,6 @@ jobs:
         path: kernel_workspace/boot.img
         
     - name: 上传 Image.gz-dtb
-      if: env.CHECK_DTBO_IS_OK == 'true'
       uses: actions/upload-artifact@v3
       with:
         name: Image-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
