@@ -28,13 +28,13 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
         
-        mkdir gcc-64
+        mkdir gcc64
         wget -O gcc-aarch64.tar.gz https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/+archive/refs/tags/android-12.1.0_r27.tar.gz
-        tar -C gcc-64/ -zxvf gcc-aarch64.tar.gz
+        tar -C gcc64/ -zxvf gcc-aarch64.tar.gz
     
-        mkdir gcc-32
+        mkdir gcc32
         wget -O gcc-arm.tar.gz https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/+archive/refs/tags/android-12.1.0_r27.tar.gz
-        tar -C gcc-32/ -zxvf gcc-arm.tar.gz
+        tar -C gcc32/ -zxvf gcc-arm.tar.gz
     
     - name: 下载Clang编译器
       run: |
