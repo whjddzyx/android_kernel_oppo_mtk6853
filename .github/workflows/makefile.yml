@@ -1,10 +1,7 @@
 name: 编译mt6853机型内核
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
