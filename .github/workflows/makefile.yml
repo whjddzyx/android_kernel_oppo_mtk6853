@@ -16,7 +16,7 @@ jobs:
       run: |
             echo "KERNEL_CONFIG=$(cat config.env | grep -w "KERNEL_CONFIG" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
             echo "KERNEL_ZIP_NAME=$(cat config.env | grep -w "KERNEL_ZIP_NAME" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
-            echo "KERNEL_LTO=$(cat config.env | grep -w "KERNEL_LTO" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
+            echo "KERNEL_SELINUX_DEVLOP=$(cat config.env | grep -w "KERNEL_SELINUX_DEVLOP" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
             echo "KERNEL_KSU=$(cat config.env | grep -w "KERNEL_KSU" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
     - name: 构建编译内核环境
       run: |
@@ -62,14 +62,11 @@ jobs:
         curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s ${{ env.KERNELSU_TAG }}
 
     - name: 开启LTO优化配置
-      if: env.KERNEL_LTO == 'yes'
+      if: env.KERNEL_SELINUX_DEVLOP == 'yes'
       run: |
          cd $GITHUB_WORKSPACE/kernel_workspace
-         echo "CONFIG_LTO=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
-         echo "CONFIG_ARCH_SUPPORTS_LTO_CLANG=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
-         echo "CONFIG_ARCH_SUPPORTS_THINLTO=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
-         echo "CONFIG_THINLTO=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
-         echo "CONFIG_LTO_CLANG=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+         echo "SELINUX_DEVLOP=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+         
                
     - name: 设置ccache缓存
       uses: hendrikmuhs/ccache-action@v1.2
