@@ -58,7 +58,16 @@ jobs:
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
         rm -rf KernelSU
         curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s ${{ env.KERNELSU_TAG }}
-        
+
+    - name: 开启LTO优化配置
+      if: env.ENABLE_KVM == 'true'
+      run: |
+         cd $GITHUB_WORKSPACE/kernel_workspace
+         echo "CONFIG_LTO=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+         echo "CONFIG_ARCH_SUPPORTS_LTO_CLANG=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+         echo "CONFIG_ARCH_SUPPORTS_THINLTO=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+         echo "CONFIG_THINLTO=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+         echo "CONFIG_LTO_CLANG=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
                
     - name: 设置ccache缓存
       uses: hendrikmuhs/ccache-action@v1.2
@@ -67,6 +76,7 @@ jobs:
         max-size: 2G
 
     - name: 格式转化
+      if: env.MAKE_BOOT_IMAGE_IS_OK == 'true'
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
         find ./  -exec dos2unix {} \;
