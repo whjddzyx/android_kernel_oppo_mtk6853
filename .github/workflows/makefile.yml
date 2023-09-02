@@ -120,7 +120,7 @@ jobs:
     - name: 上传 Anykernel3
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.KERNEL_CONFIG }}
+        name: 卡刷包-${{ env.KERNEL_CONFIG }}
         path: kernel_workspace/AnyKernel3/*
         
     - name: 上传 boot.img
@@ -133,5 +133,5 @@ jobs:
     - name: 上传编译产物
       uses: actions/upload-artifact@v3
       with:
-        name: boot
+        name: 编译产物boot文件夹
         path: kernel_workspace/android-kernel/out/arch/arm64/boot/*      
