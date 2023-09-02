@@ -61,11 +61,6 @@ jobs:
         rm -rf KernelSU
         curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s ${{ env.KERNELSU_TAG }}
 
-    - name: 开启LTO优化配置
-      if: env.KERNEL_SELINUX_DEVLOP == 'yes'
-      run: |
-         cd $GITHUB_WORKSPACE/kernel_workspace
-         echo "SELINUX_DEVLOP=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
          
                
     - name: 设置ccache缓存
