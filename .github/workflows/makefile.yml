@@ -111,10 +111,10 @@ jobs:
     - name: 制作内核boot.img镜像
       if: env.HAVE_SOURCE_BOOT_IMAGE == 'true' && env.CHECK_FILE_IS_OK == 'true'
       run: |
-        cd $GITHUB_WORKSPACE/kernel_workspace
+        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
         git clone https://android.googlesource.com/platform/system/tools/mkbootimg tools -b master-kernel-build-2022 --depth=1
         tools/unpack_bootimg.py --boot_img boot-source.img
-        cp android-kernel/out/arch/${{ env.ARCH }}/boot/${{ env.KERNEL_IMAGE_NAME }} out/kernel
+        cp out/arch/arm64/boot/Image.gz-dtb out/kernel
         tools/mkbootimg.py ${{ env.FORMAT_MKBOOTING }} -o boot.img
         if [ -f boot.img ]; then
             echo "MAKE_BOOT_IMAGE_IS_OK=true" >> $GITHUB_ENV
@@ -137,8 +137,8 @@ jobs:
         name: boot${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
         path: kernel_workspace/boot.img
         
-    - name: 上传编译产物
+    - name: 上传编译内核
       uses: actions/upload-artifact@v3
       with:
-        name: 编译产物boot文件夹
-        path: kernel_workspace/android-kernel/out/arch/arm64/boot/*      
+        name: 编译内核Image.gz-dtb
+        path: kernel_workspace/android-kernel/out/arch/arm64/boot/Image.gz-dtb    
