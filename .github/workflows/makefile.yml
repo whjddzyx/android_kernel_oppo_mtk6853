@@ -121,8 +121,8 @@ jobs:
         if [ -f boot.img ]; then
             echo "MAKE_BOOT_IMAGE_IS_OK=true" >> $GITHUB_ENV
         else
-            echo "Boot image is empty"
-            exit 1
+            echo "MAKE_BOOT_IMAGE_IS_OK=false" >> $GITHUB_ENV
+            
         fi
     
     
@@ -136,11 +136,11 @@ jobs:
       if: env.MAKE_BOOT_IMAGE_IS_OK == 'true'
       uses: actions/upload-artifact@v3
       with:
-        name: boot${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
+        name: 内核镜像-boot.img
         path: kernel_workspace/boot.img
         
     - name: 上传编译内核
       uses: actions/upload-artifact@v3
       with:
-        name: 编译内核Image.gz-dtb
+        name: 内核Image.gz-dtb
         path: kernel_workspace/android-kernel/out/arch/arm64/boot/Image.gz-dtb    
