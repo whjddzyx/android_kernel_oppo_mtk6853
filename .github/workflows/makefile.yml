@@ -64,7 +64,7 @@ jobs:
         curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s ${{ env.KERNELSU_TAG }}
 
     - name: 关闭驱动签名
-      if: env.KERNEL_QD == 'true'
+      if: env.KERNEL_QD == 'yes'
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
         sed -i '/CONFIG_MODULE_SIG/d' android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
