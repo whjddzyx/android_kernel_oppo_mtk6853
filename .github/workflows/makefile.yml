@@ -61,6 +61,17 @@ jobs:
         rm -rf KernelSU
         curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s ${{ env.KERNELSU_TAG }}
 
+    - name: 关闭驱动签名
+      if: env.ANDROID_PARANOID_NETWORK_OFF == 'true'
+      run: |
+        cd $GITHUB_WORKSPACE/kernel_workspace
+        sed -i '/CONFIG_MODULE_SIG/d' android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+        sed -i '/CONFIG_MODULE_SIG_FORCE/d' android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+        sed -i '/CONFIG_MODULE_SIG_ALL/d' android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+        echo "# CONFIG_MODULE_SIG is not set" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+        echo "# CONFIG_MODULE_SIG_FORCE is not set" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+        echo "# CONFIG_MODULE_SIG_ALL is not set" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+        
          
                
     - name: 设置ccache缓存
