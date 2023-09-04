@@ -18,6 +18,8 @@ jobs:
             echo "KERNEL_ZIP_NAME=$(cat config.env | grep -w "KERNEL_ZIP_NAME" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
             echo "KERNEL_SELINUX_DEVLOP=$(cat config.env | grep -w "KERNEL_SELINUX_DEVLOP" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
             echo "KERNEL_KSU=$(cat config.env | grep -w "KERNEL_KSU" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
+            echo "KERNEL_QD=$(cat config.env | grep -w "KERNEL_QD" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
+            echo "KERNEL_SELINUX=$(cat config.env | grep -w "KERNEL_SELINUX" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
     - name: 构建编译内核环境
       run: |
         sudo apt-get update
@@ -62,7 +64,7 @@ jobs:
         curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s ${{ env.KERNELSU_TAG }}
 
     - name: 关闭驱动签名
-      if: env.ANDROID_PARANOID_NETWORK_OFF == 'true'
+      if: env.KERNEL_QD == 'true'
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
         sed -i '/CONFIG_MODULE_SIG/d' android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
