@@ -74,6 +74,22 @@ jobs:
         echo "# CONFIG_MODULE_SIG is not set" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
         echo "# CONFIG_MODULE_SIG_FORCE is not set" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
         echo "# CONFIG_MODULE_SIG_ALL is not set" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+
+
+    - name: 允许设置SELINUX
+      if: env.KERNEL_SELINUX == 'yes'
+      run: |
+        cd $GITHUB_WORKSPACE/kernel_workspace
+        sed -i '/CONFIG_SECURITY_SELINUX_BOOTPARAM/d' android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+        sed -i '/CONFIG_SECURITY_SELINUX_BOOTPARAM_VALUE/d' android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+        sed -i '/CONFIG_SECURITY_SELINUX_DISABLE/d' android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+        sed -i '/CONFIG_SECURITY_SELINUX_DEVELOP/d' android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+        sed -i '/CONFIG_SECURITY_SELINUX_AVC_STATS/d' android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+        echo "CONFIG_SECURITY_SELINUX_BOOTPARAM=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+        echo "CONFIG_SECURITY_SELINUX_BOOTPARAM_VALUE=1" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+        echo "CONFIG_SECURITY_SELINUX_DISABLE=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+        echo "CONFIG_SECURITY_SELINUX_DEVELOP=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+        echo "CONFIG_SECURITY_SELINUX_AVC_STATS=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
         
          
                
