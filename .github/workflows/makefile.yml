@@ -129,18 +129,18 @@ jobs:
     - name: 上传 Anykernel3
       uses: actions/upload-artifact@v3
       with:
-        name: 卡刷包-${{ env.KERNEL_CONFIG }}
+        name: ${{ env.KERNEL_JX }}-卡刷包
         path: kernel_workspace/AnyKernel3/*
         
     - name: 上传 boot.img
       if: env.MAKE_BOOT_IMAGE_IS_OK == 'true'
       uses: actions/upload-artifact@v3
       with:
-        name: 内核镜像-boot.img
+        name: ${{ env.KERNEL_JX }}-boot.img
         path: kernel_workspace/boot.img
         
     - name: 上传编译内核
       uses: actions/upload-artifact@v3
       with:
-        name: 内核Image.gz-dtb
+        name: ${{ env.KERNEL_JX }}-Image.gz-dtb
         path: kernel_workspace/android-kernel/out/arch/arm64/boot/Image.gz-dtb    
