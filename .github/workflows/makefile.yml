@@ -112,8 +112,8 @@ jobs:
     - name: 制作内核boot.img镜像
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
-        mv android-kernel/${{ env.KERNEL_JX }}/*.img ./boot.img
         git clone https://github.com/Kyuofox/AIK-Linux.git
+        mv android-kernel/${{ env.KERNEL_JX }}/*.img AIK-Linux/boot.img
         AIK-Linux/unpackimg.sh
         cp android-kernel/out/arch/arm64/boot/Image.gz-dtb AIK-Linux/split_img/boot.img-zImage
         AIK-Linux/repackimg.sh
