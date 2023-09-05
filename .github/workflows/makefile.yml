@@ -112,13 +112,12 @@ jobs:
     - name: 制作内核boot.img镜像
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
-        mv android-kernel/${{ env.KERNEL_JX }}/*.img ./boot-source.img
-        git clone https://android.googlesource.com/platform/system/tools/mkbootimg tools -b master-kernel-build-2022 --depth=1
-        echo "FORMAT_MKBOOTING=$(echo `tools/unpack_bootimg.py --boot_img=boot-source.img --format mkbootimg`)" >> $GITHUB_ENV
-        tools/unpack_bootimg.py --boot_img boot-source.img
-        cp android-kernel/out/arch/arm64/boot/Image.gz-dtb out/kernel
-        tools/mkbootimg.py ${{ env.FORMAT_MKBOOTING }} -o boot.img
-        if [ -f boot.img ]; then
+        mv android-kernel/${{ env.KERNEL_JX }}/*.img ./boot.img
+        git clone https://github.com/Kyuofox/AIK-Linux.git
+        AIK-Linux/unpackimg.sh
+        cp android-kernel/out/arch/arm64/boot/Image.gz-dtb AIK-Linux/split_img/boot.img-zImage
+        AIK-Linux/repackimg.sh
+        if [ -f AIK-Linux/image-new.img ]; then
             echo "MAKE_BOOT_IMAGE_IS_OK=true" >> $GITHUB_ENV
         else
             echo "MAKE_BOOT_IMAGE_IS_OK=false" >> $GITHUB_ENV
@@ -137,7 +136,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: ${{ env.KERNEL_JX }}-boot.img
-        path: kernel_workspace/boot.img
+        path: kernel_workspace/AIK-Linux/image-new.img
         
     - name: 上传编译内核
       uses: actions/upload-artifact@v3
