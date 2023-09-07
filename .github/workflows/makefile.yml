@@ -161,3 +161,9 @@ jobs:
       with:
         name: ${{ env.KERNEL_JX }}-Image.gz-dtb
         path: kernel_workspace/android-kernel/out/arch/arm64/boot/Image.gz-dtb    
+
+    - name: 上传kvm所需vhost_vsock驱动模块
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ env.KERNEL_JX }}-vhost_vsock
+        path: kernel_workspace/android-kernel/out/drivers/vhost/vhost_vsock.ko
