@@ -105,10 +105,7 @@ jobs:
         echo "CONFIG_SECURITY_SELINUX_DISABLE=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
         echo "CONFIG_SECURITY_SELINUX_DEVELOP=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
         echo "CONFIG_SECURITY_SELINUX_AVC_STATS=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
-        echo "# CONFIG_MODULE_SIG_FORCE is not set" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
-        echo "# CONFIG_MODULE_SIG_ALL is not set" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
-        
-         
+      
                
     - name: 设置ccache缓存
       uses: hendrikmuhs/ccache-action@v1.2
