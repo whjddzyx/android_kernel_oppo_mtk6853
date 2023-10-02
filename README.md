@@ -2,11 +2,13 @@ OPPO A72 5G  开机
 
 OPPO A53 5G  开机
 
-OPPO K7x 5G   ？
+OPPO K7x 5G  开机
 
 OPPO Reno4SE 5G ？
 
 Realme Q2 5G  开机
+
+Realme V15 ?
 
 处理器:天玑720/天玑800u 代号mtk6853
 
