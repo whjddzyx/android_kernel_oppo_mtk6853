@@ -8,7 +8,7 @@ OPPO Reno4SE 5G ？
 
 Realme Q2 5G  开机
 
-Realme V15 ?
+Realme V15 开机
 
 vivo y52s ?
 
