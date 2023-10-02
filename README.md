@@ -10,7 +10,7 @@ Realme Q2 5G  开机
 
 Realme V15 ?
 
-vivo y52s 开机
+vivo y52s ?
 
 处理器:天玑720/天玑800u 代号mtk6853
 
