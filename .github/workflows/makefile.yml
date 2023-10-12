@@ -183,6 +183,6 @@ jobs:
     - name: 上传config
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.KERNEL_JX }}-Image.gz-dtb
+        name: ${{ env.KERNEL_JX }}-config
         path: kernel_workspace/android-kernel/out/.config    
 
