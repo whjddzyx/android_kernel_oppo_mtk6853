@@ -81,6 +81,8 @@ jobs:
       if: env.KERNEL_QD == 'yes'
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
+        sed -i '/CONFIG_MODULE_FORCE_LOAD/d' android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+        sed -i '/CONFIG_MODULE_FORCE_UNLOAD/d' android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
         sed -i '/CONFIG_MODULE_SIG/d' android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
         sed -i '/CONFIG_MODULE_SIG_FORCE/d' android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
         sed -i '/CONFIG_MODULE_SIG_ALL/d' android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
@@ -89,6 +91,8 @@ jobs:
         echo "# CONFIG_MODULE_SIG_FORCE is not set" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
         echo "# CONFIG_MODULE_SIG_ALL is not set" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
         echo "# CONFIG_MODULE_SIG_HASH is not set" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+        echo "CONFIG_MODULE_FORCE_LOAD=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+        echo "CONFIG_MODULE_FORCE_UNLOAD=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
 
 
     - name: 允许设置SELINUX
@@ -174,4 +178,11 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: ${{ env.KERNEL_JX }}-Image.gz-dtb
-        path: kernel_workspace/android-kernel/out/arch/arm64/boot/Image.gz-dtb    
+        path: kernel_workspace/android-kernel/out/arch/arm64/boot/Image.gz-dtb
+
+    - name: 上传config
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ env.KERNEL_JX }}-Image.gz-dtb
+        path: kernel_workspace/android-kernel/out/.config    
+
