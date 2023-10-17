@@ -10,6 +10,7 @@ Realme Q2 5G  开机
 
 Realme V15 开机
 
+Realme V5 ？
 
 处理器:天玑720/天玑800u 代号mtk6853
 
