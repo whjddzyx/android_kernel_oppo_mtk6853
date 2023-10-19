@@ -66,17 +66,7 @@ jobs:
         rm -rf KernelSU
         curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s ${{ env.KERNELSU_TAG }}
 
-    - name: 关闭AVB校验
-      if: env.KERNEL_AVB == 'yes'
-      run: |
-        cd $GITHUB_WORKSPACE/kernel_workspace
-        sed -i '/CONFIG_DM_VERITY/d' android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
-        sed -i '/CONFIG_DM_VERITY_FEC/d' android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
-        sed -i '/CONFIG_DM_VERITY_AVB/d' android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
-        echo "# CONFIG_DM_VERITY is not set" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
-        echo "# CONFIG_DM_VERITY_FEC is not set" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
-        echo "# CONFIG_DM_VERITY_AVB is not set" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
-        
+
     - name: 关闭驱动签名
       if: env.KERNEL_QD == 'yes'
       run: |
