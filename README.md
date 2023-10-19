@@ -1,14 +1,14 @@
-OPPO A72 5G  开机
+OPPO A72 5G  开机  支持kernelsu docker  lxc   kvm
 
-OPPO A53 5G  开机
+OPPO A53 5G  开机  支持kernelsu docker  lxc   kvm
 
 OPPO K7x 5G  开机
 
-OPPO Reno4SE 5G ？
+OPPO Reno4SE 5G 开机
 
-Realme Q2 5G  开机
+Realme Q2 5G  开机 支持kernelsu docker  lxc  kvm
 
-Realme V15 5G 开机
+Realme V15 5G 开机 支持kernelsu docker  lxc
 
 Realme V5 5G ？
 
