@@ -14,6 +14,7 @@
 
 ☞OPPO Reno4SE 5G 开机
 
+支持kernelsu docker  lxc   kvm
 
 ☞Realme Q2 5G  开机 
 
