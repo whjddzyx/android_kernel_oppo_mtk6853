@@ -32,9 +32,11 @@
 支持kernelsu docker  lxc
 
 
+*☞Realme Q2 pro 5G 支持*
+
+
 *☞Realme V5 5G ？*
 
-*☞Realme Q2 pro 5G ？*
 
 
 
