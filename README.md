@@ -37,6 +37,8 @@
 
 *☞Realme V5 5G ？*
 
+☞Realme x7 5G ？*
+
 
 
 
